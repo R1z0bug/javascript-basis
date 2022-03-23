@@ -1,6 +1,7 @@
 
 //Contructor function
 function Validator(options){
+<<<<<<< HEAD
     var selectorRules= {};
 
 
@@ -18,6 +19,14 @@ function Validator(options){
             errorMessage = rules[i](inputElement.value);
             if(errorMessage) break;
         }
+=======
+
+    // hàm thực hiện validate
+    function validate(inputElement, rule){
+        var errorMessage = rule.test(inputElement.value);
+        var errorElement = inputElement.parentElement.querySelector(options.errorSelector);
+
+>>>>>>> 224141868420f14a7c752c5bb6611240343e84b9
         
         if(errorMessage){
             errorElement.innerText = errorMessage;
@@ -31,6 +40,7 @@ function Validator(options){
     var formElement = document.querySelector(options.form);
     //  console.log(formElement)
     if(formElement){
+<<<<<<< HEAD
         //stop action submit
         formElement.onsubmit =function(e){
             e.preventDefault();
@@ -57,6 +67,10 @@ function Validator(options){
             }
 
 
+=======
+
+        options.rules.forEach(function(rule){
+>>>>>>> 224141868420f14a7c752c5bb6611240343e84b9
             var inputElement = formElement.querySelector(rule.selector);
             // console.log(inputElement);
             // xử lý trường hợp blur khỏi input
@@ -104,6 +118,7 @@ Validator.minLength = function(selector,min){
             return value.length >= min ? undefined  : `Vui lòng nhập tối thiểu ${min} kí tự`
         }
     };
+<<<<<<< HEAD
 }
 Validator.isConfirmed = function(selector,getCofirmValue,message){
     return {
@@ -113,3 +128,6 @@ Validator.isConfirmed = function(selector,getCofirmValue,message){
         }
     };
 }
+=======
+}
+>>>>>>> 224141868420f14a7c752c5bb6611240343e84b9
