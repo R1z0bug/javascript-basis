@@ -35,7 +35,7 @@
           </div>
       
           <div class="form-group">
-            <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
+            <label for="#" class="form-label">Nhập lại mật khẩu</label>
             <input id="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu" type="password" class="form-control">
             <span class="form-message"></span>
           </div>
@@ -47,11 +47,20 @@
       <script src="./validator.js"></script>
       <script>
           Validator({
-              from: '#form-1',
+              form: '#form-1',
+              errorSelector:'.form-message',
               rules:[
                   Validator.isRequired('#fullname'),
                   Validator.isEmail('#email'),
-              ]
+                  Validator.minLength('#password',6),
+                  Validator.isRequired('#password_confirmation'),
+                  Validator.isConfirmed('#password_confirmation', function(){
+                    return document.querySelector('#form-1 #password').value;
+                  },'Mật khẩu nhập lại không chính xác')
+              ],
+              onSubmit: function(data){
+                console.log(data);
+              }
           });
       </script>
 </body>
